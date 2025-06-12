@@ -45,7 +45,7 @@ function App() {
       const baseXP = 10;
       const newXP = xp + baseXP;
       setXp(newXP);
-      setLevel(Math.floor(newXP / 1000) + 1);
+      setLevel(Math.floor(newXP / 100) + 1);
       setShowBonus(true);
     } else {
       alert("You missed!");
@@ -77,7 +77,7 @@ function App() {
 
         setXp((prev) => {
   const updated = prev + bonusXP;
-  setLevel(Math.floor(updated / 1000) + 1);
+  setLevel(Math.floor(updated / 100) + 1);
   return updated;
 });
 
