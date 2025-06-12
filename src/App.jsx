@@ -69,23 +69,19 @@ function App() {
         }),
       });
 
-    const data = await res.json();
-
-      if (data.status === "ok") {
-        const { adequacy_xp, fluency_xp, bonus } = data.bonus;
-        const bonusXP = bonus?.xp_awarded || 0;
-
-        setXp((prev) => {
-  const updated = prev + bonusXP;
-  setLevel(Math.floor(updated / 100) + 1);
-  return newxp;
-});
-
-setBonusScores({
-  adequacy: adequacy_xp,
-  fluency: fluency_xp,
-  total: bonusXP
-});
+   const data = await res.json();
+   if (data.status === "ok") {
+      const { adequacy, fluency, total } = data.bonus;
+    
+      setXp(prev => {
+        const newXp = prev + total;
+        setLevel(Math.floor(newXp / 100) + 1);
+        return newXp;
+      });
+    
+      setBonusScores({ adequacy, fluency, total });
+    }
+ 
 
       } else {
         console.error("Server responded but not OK:", data);
