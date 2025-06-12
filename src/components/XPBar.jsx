@@ -3,7 +3,7 @@ import React from "react";
 import "./XPBar.css";
 
 const XPBar = ({ xp, level }) => {
-  const maxXP = 1000;
+  const maxXP = 100;
   const percentage = (xp % maxXP) / maxXP * 100;
 
   return (
