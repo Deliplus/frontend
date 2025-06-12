@@ -28,7 +28,7 @@ function App() {
     const data = await res.json();
     setSourceText(data.source);
     setOptions(data.options);
-    setCorrectId(data.correct_id); 
+    setCorrectId(data.correct_id);
     setSelectedId(null);
     setBonusScores({ adequacy: 0, fluency: 0, total: 0 });
   };
@@ -63,31 +63,27 @@ function App() {
         body: JSON.stringify({
           user_id: username,
           source: sourceText,
-          chosen_id: selectedId,  // <-- make sure this is set
+          chosen_id: selectedId,
           adequacy,
           fluency,
         }),
       });
 
-   const data = await res.json();
-     if (data.status === "ok") {
-      const { adequacy_xp, fluency_xp, total } = data;
-    
-      setXp(prev => {
-        const newXp = prev + total;
-        setLevel(Math.floor(newXp / 100) + 1);
-        return newXp;
-      });
-    
-      setBonusScores({
-        adequacy: adequacy_xp,
-        fluency: fluency_xp,
-        total: total,
-      });
-    }
+      const data = await res.json();
+      if (data.status === "ok") {
+        const { adequacy_xp, fluency_xp, total } = data;
 
- 
+        setXp((prev) => {
+          const newXp = prev + total;
+          setLevel(Math.floor(newXp / 100) + 1);
+          return newXp;
+        });
 
+        setBonusScores({
+          adequacy: adequacy_xp,
+          fluency: fluency_xp,
+          total: total,
+        });
       } else {
         console.error("Server responded but not OK:", data);
       }
@@ -95,8 +91,6 @@ function App() {
       console.error("Error submitting evaluation:", err);
     }
   };
-
-
 
   const handleCloseBonus = () => {
     setShowBonus(false);
