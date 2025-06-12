@@ -24,7 +24,7 @@ function App() {
   const [bonusScores, setBonusScores] = useState({ adequacy: 0, fluency: 0, total: 0 });
 
   const loadTranslation = async () => {
-    const res = await fetch("http://localhost:8000/translation-duel");
+    const res = await fetch("https://backend-ioiz.onrender.com/translation-duel");
     const data = await res.json();
     setSourceText(data.source);
     setOptions(data.options);
@@ -55,7 +55,7 @@ function App() {
 
   const handleBonusSubmit = async ({ adequacy, fluency }) => {
     try {
-      const res = await fetch("http://localhost:8000/submit-evaluation", {
+      const res = await fetch("https://backend-ioiz.onrender.com/submit-evaluation", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
