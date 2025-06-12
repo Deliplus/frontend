@@ -5,7 +5,8 @@ import "./StartScreen.css";
 const StartScreen = ({ onStart }) => {
   return (
     <div className="start-screen">
-      <h1 className="game-title">🌸Translate Arena🌸</h1>
+      <h1 className="game-title">🌸Blooming Babel🌸</h1>
+      <p className="tagline">Cultivate your tongue, bloom your world.</p>
       <button className="start-button" onClick={onStart}>
         Start Game
       </button>
