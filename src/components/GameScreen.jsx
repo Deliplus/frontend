@@ -20,7 +20,7 @@ const GameScreen = ({
       <TreeVisual level={level} treeName={username} />
 
       <div className="source-text">
-        <h2>Original Sentence</h2>
+        <h2>Selecting the correct translation and watch your tree blossom </h2>
         <p>{sourceText}</p>
       </div>
 
