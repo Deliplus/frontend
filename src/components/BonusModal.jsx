@@ -48,7 +48,7 @@ const BonusModal = ({
     <div className="bonus-modal-overlay">
       <div className="bonus-modal">
         <h2 className="modal-title">🎉 Bonus Round</h2>
-        <p>Rate the winning translation:</p>
+        <p>Rate the winning translation and earn extra points! :</p>
 
         <StarRating label="📝 Adequacy" value={adequacy} onChange={setAdequacy} />
         <StarRating label="💬 Fluency" value={fluency} onChange={setFluency} />
