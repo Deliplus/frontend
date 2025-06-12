@@ -72,13 +72,13 @@ function App() {
     const data = await res.json();
 
       if (data.status === "ok") {
-        const { adequacy_xp, fluency_xp, bonus } = data;
+        const { adequacy_xp, fluency_xp, bonus } = data.bonus;
         const bonusXP = bonus?.xp_awarded || 0;
 
         setXp((prev) => {
   const updated = prev + bonusXP;
   setLevel(Math.floor(updated / 100) + 1);
-  return updated;
+  return newxp;
 });
 
 setBonusScores({
