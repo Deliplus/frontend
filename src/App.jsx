@@ -70,8 +70,8 @@ function App() {
       });
 
    const data = await res.json();
-   if (data.status === "ok") {
-      const { adequacy, fluency, total } = data.bonus;
+     if (data.status === "ok") {
+      const { adequacy_xp, fluency_xp, total } = data;
     
       setXp(prev => {
         const newXp = prev + total;
@@ -79,8 +79,13 @@ function App() {
         return newXp;
       });
     
-      setBonusScores({ adequacy, fluency, total });
+      setBonusScores({
+        adequacy: adequacy_xp,
+        fluency: fluency_xp,
+        total: total,
+      });
     }
+
  
 
       } else {
