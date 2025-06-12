@@ -1,0 +1,21 @@
+/* frontend/src/components/TranslationCard.css */
+.translation-card {
+  border: 2px solid #ffc0cb;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 0.5rem;
+  background-color: #fff0f5;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.translation-card:hover {
+  transform: scale(1.02);
+  background-color: #ffe4e1;
+}
+
+.translation-card.selected {
+  border-color: #ff69b4;
+  background-color: #ffe4e1;
+}

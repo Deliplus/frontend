@@ -1,0 +1,18 @@
+/* frontend/src/components/TreeVisual.css */
+.tree-container {
+  text-align: center;
+  margin: 20px auto;
+}
+
+.tree-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #d772a1;
+  margin-bottom: 10px;
+}
+
+.tree-image {
+  width: 250px;
+  max-width: 80%;
+  transition: all 0.4s ease-in-out;
+}

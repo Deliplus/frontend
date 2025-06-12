@@ -1,0 +1,38 @@
+/* src/index.css */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fefefe;
+}
+
+.app {
+  text-align: center;
+}
+
+header {
+  background-color: #ffcccb;
+  padding: 1rem;
+  border-bottom: 2px solid #f88;
+}
+
+.user-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.xp-bar {
+  background-color: #ddd;
+  height: 10px;
+  width: 100%;
+  margin-left: 1rem;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.xp-bar .fill {
+  background-color: orange;
+  height: 100%;
+}
