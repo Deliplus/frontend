@@ -66,6 +66,7 @@ function App() {
           chosen_id: selectedId,
           adequacy,
           fluency,
+          correct_id: correctId
         }),
       });
 
