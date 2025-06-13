@@ -23,32 +23,38 @@ function App() {
   const [showBonus, setShowBonus] = useState(false);
   const [bonusScores, setBonusScores] = useState({ adequacy: 0, fluency: 0, total: 0 });
 
-  const loadTranslation = async () => {
-    const res = await fetch("https://backend-r5dx.onrender.com/translation-duel");
-    const data = await res.json();
-    setSourceText(data.source);
-    setOptions(data.options);
-    setCorrectId(data.correct_id);
-    setSelectedId(null);
-    setBonusScores({ adequacy: 0, fluency: 0, total: 0 });
-  };
-
-  useEffect(() => {
-    if (stage === "game") {
-      loadTranslation();
-    }
-  }, [stage]);
-
-  const handleTranslationSelect = (id) => {
+  const handleTranslationSelect = async (id) => {
     setSelectedId(id);
-    if (id === correctId) {
+    const isCorrect = id === correctId;
+  
+    // Always submit evaluation, even if incorrect
+    try {
+      await fetch("https://backend-r5dx.onrender.com/submit-evaluation", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_id: username,
+          source: sourceText,
+          chosen_id: id,
+          adequacy: isCorrect ? 5 : 0,  // only grant real scores on correct answers
+          fluency: isCorrect ? 5 : 0,
+        }),
+      });
+    } catch (err) {
+      console.error("❌ Error submitting evaluation:", err);
+    }
+  
+    // Handle game flow
+    if (isCorrect) {
       const baseXP = 10;
       const newXP = xp + baseXP;
       setXp(newXP);
       setLevel(Math.floor(newXP / 100) + 1);
       setShowBonus(true);
     } else {
-      alert("You missed!");
+      alert("❌ You missed!");
       setTimeout(() => loadTranslation(), 800);
     }
   };
