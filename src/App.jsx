@@ -22,6 +22,8 @@ function App() {
   const [correctId, setCorrectId] = useState("");
   const [showBonus, setShowBonus] = useState(false);
   const [bonusScores, setBonusScores] = useState({ adequacy: 0, fluency: 0, total: 0 });
+  const [showWrongBonus, setShowWrongBonus] = useState(false); 
+  const [pendingRating, setPendingRating] = useState(null);    
 
   const loadTranslation = async () => {
     const res = await fetch("https://backend-r5dx.onrender.com/translation-duel");
@@ -71,8 +73,7 @@ function App() {
       setLevel(Math.floor(newXP / 100) + 1);
       setShowBonus(true);
     } else {
-      alert("❌ You missed!");
-      setTimeout(() => loadTranslation(), 800);
+      setShowWrongBonus(true);
     }
   };
 
@@ -151,6 +152,19 @@ function App() {
         onSubmit={handleBonusSubmit}
         onClose={handleCloseBonus}
         defaultScores={bonusScores}
+        mode= "correct"
+      />
+      <BonusModal
+        show={showWrongBonus}
+        scores={bonusScores}
+        onSubmit={handleBonusSubmit}
+        onClose={() => {
+          setShowWrongBonus(false);
+          setSelectedId(null);
+          loadTranslation();
+        }}
+        defaultScores={{ adequacy: 0, fluency: 0, total: 5 }}
+        mode="incorrect" //  prop for message change
       />
     </div>
   );
