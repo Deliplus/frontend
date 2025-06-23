@@ -24,6 +24,7 @@ const BonusModal = ({
   onClose,
   onSubmit,
   defaultScores = { adequacy: 0, fluency: 0, total: 0 },
+  mode= "correct"
 }) => {
   const [adequacy, setAdequacy] = useState(0);
   const [fluency, setFluency] = useState(0);
@@ -43,15 +44,22 @@ const BonusModal = ({
   };
 
   if (!show) return null;
+  const title =
+    mode === "correct"
+      ? "🎉 Bonus Round"
+      : "❌ Oops! Not quite, but don't leave empty-handed";
+  const subtitle =
+    mode === "correct"
+      ? "Rate the winning translation:"
+      : "Help us by rating this translation! You’ll still earn XP.";
 
   return (
     <div className="bonus-modal-overlay">
       <div className="bonus-modal">
-        <h2 className="modal-title">🎉 Bonus Round</h2>
-        <p>Rate the winning translation and earn extra points! :</p>
-
-        <StarRating label="📝 Adequacy" value={adequacy} onChange={setAdequacy} />
-        <StarRating label="💬 Fluency" value={fluency} onChange={setFluency} />
+         <h2 className="modal-title">{title}</h2>
+         <p>{subtitle}</p>
+         <StarRating label="📝 Adequacy" value={adequacy} onChange={setAdequacy} />
+         <StarRating label="💬 Fluency" value={fluency} onChange={setFluency} />
 
         {!submitted ? (
           <button
